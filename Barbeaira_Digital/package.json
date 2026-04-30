@@ -1,0 +1,22 @@
+{
+  "name": "barbeaira_digital",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelRamalhoPontes/Projeto-Barbearia-Digital.git"
+  },
+  "author": "Miguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiguelRamalhoPontes/Projeto-Barbearia-Digital/issues"
+  },
+  "homepage": "https://github.com/MiguelRamalhoPontes/Projeto-Barbearia-Digital#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
