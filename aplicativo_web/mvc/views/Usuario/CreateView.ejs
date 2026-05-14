@@ -1,208 +1,123 @@
+<!-- Usuario/CreateView -->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cliente - Barbearia Digital</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar Usuário</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+<style>
 
-        form {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 420px;
-            border-top: 4px solid #1a1a2e;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        h1 {
-            color: #1a1a2e;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 26px;
-            font-weight: 600;
-        }
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#020617;
+    color:white;
+    display:flex;
+    min-height:100vh;
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
 
-        label {
-            display: block;
-            color: #333;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
+.sidebar h2{
+    margin-bottom:20px;
+}
 
-        input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f5f5f5;
-        }
+.sidebar a{
+    text-decoration:none;
+    color:white;
+    background:#1e293b;
+    padding:14px;
+    border-radius:10px;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #1a1a2e;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.1);
-        }
+.sidebar a:hover{
+    background:#7c3aed;
+}
 
-        button {
-            width: 100%;
-            padding: 16px;
-            background: #1a1a2e;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
+.content{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-        button:hover {
-            background: #16213e;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(26, 26, 46, 0.3);
-        }
+.card{
+    width:100%;
+    max-width:500px;
+    background:#0f172a;
+    padding:40px;
+    border-radius:16px;
+}
 
-        button:active {
-            transform: translateY(0);
-        }
+input{
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+}
 
-        .message {
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#7c3aed;
+    color:white;
+    cursor:pointer;
+}
 
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
-        }
-
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
-        }
-    </style>
+</style>
 </head>
-<body>
-    
-    <form id="formCadastro">
-        <h1>Cadastro de Cliente</h1>
-        
-        <div id="message" class="message"></div>
 
-        <div class="form-group">
-            <label for="username">Nome</label>
-            <input type="text" id="username" placeholder="Digite o nome" required>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="Digite o e-mail" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" placeholder="Digite a senha" required>
-        </div>
-        <div>
-            <button id="btnCadastrarUsuario" type="submit">Cadastrar</button>
-        </div>
-    </form>
+<body>
+
+<div class="sidebar">
+    <h2>Usuários</h2>
+
+    <a href="/user/list">Lista</a>
+    <a href="/user/create">Novo Usuário</a>
+</div>
+
+<div class="content">
+
+<form class="card">
+
+<h1>Cadastrar Usuário</h1>
+
+<label>Nome</label>
+<input type="text">
+
+<label>Email</label>
+<input type="email">
+
+<label>Senha</label>
+<input type="password">
+
+<button>
+Cadastrar
+</button>
+
+</form>
+
+</div>
 
 </body>
-<script>
-
-    const btnCadastrarUsuario = document.getElementById("btnCadastrarUsuario")
-    const messageDiv = document.getElementById("message")
-  
-    btnCadastrarUsuario.addEventListener("click", cadastrarUsuario)
-
-    function showMessage(text, type) {
-        messageDiv.textContent = text
-        messageDiv.className = 'message ' + type
-        setTimeout(() => {
-            messageDiv.className = 'message'
-        }, 3000)
-    }
-
-    async function cadastrarUsuario(e)
-    {
-        e.preventDefault()
-
-        const username = document.getElementById("username")
-        const email = document.getElementById("email")
-        const senha = document.getElementById("senha")
-  
-        const url = "/user/create"
-
-        try {
-            const response = await fetch(url, { 
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        username : username.value,
-                        email: email.value,
-                        senha: senha.value
-                    }
-                )
-            })
-
-            const data = await response.json()
-
-            if(!response.ok)
-            {
-                showMessage("Ocorreu um erro ao cadastrar", "error")
-                console.log("Ocorreu um erro na requisição")
-                return
-            }
-
-            console.log(data)
-            
-            // Limpar os campos do formulário após cadastro bem-sucedido
-            username.value = ""
-            email.value = ""
-            senha.value = ""
-            
-            showMessage("Cliente cadastrado com sucesso!", "success")
-
-        } catch (error) {
-            showMessage("Erro ao conectar com o servidor", "error")
-            console.log(error)
-        }
-    }
-
-</script>
 </html>

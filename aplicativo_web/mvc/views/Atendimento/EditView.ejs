@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Atendimento</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:#0f172a;
+            display:flex;
+            min-height:100vh;
+            color:white;
+        }
+
+        .sidebar{
+            width:260px;
+            background:#111827;
+            padding:30px 20px;
+            border-right:2px solid #1e293b;
+        }
+
+        .sidebar h2{
+            text-align:center;
+            margin-bottom:40px;
+            color:#38bdf8;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:white;
+            background:#1e293b;
+            padding:14px;
+            border-radius:10px;
+            transition:0.3s;
+        }
+
+        .menu a:hover{
+            background:#38bdf8;
+            color:#0f172a;
+        }
+
+        .content{
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:40px;
+        }
+
+        form{
+            background:#111827;
+            padding:40px;
+            border-radius:20px;
+            width:100%;
+            max-width:600px;
+            box-shadow:0 0 30px rgba(0,0,0,0.5);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#38bdf8;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#1e293b;
+            color:white;
+            font-size:15px;
+        }
+
+        input:focus{
+            outline:none;
+            border:2px solid #38bdf8;
+        }
+
+        button{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:10px;
+            background:#38bdf8;
+            color:#0f172a;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#0ea5e9;
+        }
+
+        .not-found{
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <aside class="sidebar">
+
+        <h2>Barbearia</h2>
+
+        <nav class="menu">
+            <a href="/atendimento/list">Lista de Atendimentos</a>
+            <a href="/atendimento/create">Novo Atendimento</a>
+        </nav>
+
+    </aside>
+
+    <main class="content">
+
+        <% if(atendimento) { %>
+
+        <form id="formEdit">
+
+            <h1>Editar Atendimento</h1>
+
+            <input 
+                type="hidden" 
+                id="atendimentoId" 
+                value="<%= atendimento.id %>"
+            >
+
+            <div class="form-group">
+                <label>Nome do Cliente</label>
+
+                <input 
+                    type="text" 
+                    id="nomeCliente"
+                    value="<%= atendimento.nomeCLiente %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Telefone</label>
+
+                <input 
+                    type="text" 
+                    id="telefone"
+                    value="<%= atendimento.telefone %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Horário Atendimento</label>
+
+                <input 
+                    type="time" 
+                    id="horarioAtendimento"
+                    value="<%= atendimento.horarioAtendimento %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Data Atendimento</label>
+
+                <input 
+                    type="date" 
+                    id="dataAtendimento"
+                    value="<%= atendimento.dataAtendimento %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Data Nascimento</label>
+
+                <input 
+                    type="date" 
+                    id="dataNascimento"
+                    value="<%= atendimento.dataNascimento %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Tipo Serviço</label>
+
+                <input 
+                    type="text" 
+                    id="tipoServico"
+                    value="<%= atendimento.tipoServico %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Profissional</label>
+
+                <input 
+                    type="text" 
+                    id="profissional"
+                    value="<%= atendimento.profissional %>"
+                    required
+                >
+            </div>
+
+            <button type="submit" id="btnSubmit">
+                Atualizar Atendimento
+            </button>
+
+        </form>
+
+        <% } else { %>
+
+            <div class="not-found">
+                <h1>Atendimento não encontrado</h1>
+
+                <a 
+                    href="/atendimento/list"
+                    style="
+                        color:#38bdf8;
+                        text-decoration:none;
+                        margin-top:20px;
+                        display:block;
+                    "
+                >
+                    Voltar para a lista
+                </a>
+            </div>
+
+        <% } %>
+
+    </main>
+
+<script>
+
+<% if(atendimento) { %>
+
+    const formEdit = document.getElementById("formEdit");
+
+    formEdit.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const response = await fetch("/atendimento/edit", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: document.getElementById("atendimentoId").value,
+                nomeCliente: document.getElementById("nomeCliente").value,
+                telefone: document.getElementById("telefone").value,
+                horarioAtendimento: document.getElementById("horarioAtendimento").value,
+                dataAtendimento: document.getElementById("dataAtendimento").value,
+                dataNascimento: document.getElementById("dataNascimento").value,
+                tipoServico: document.getElementById("tipoServico").value,
+                profissional: document.getElementById("profissional").value
+            })
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        alert("Atendimento atualizado com sucesso!");
+
+    });
+
+<% } %>
+
+</script>
+
+</body>
+</html>

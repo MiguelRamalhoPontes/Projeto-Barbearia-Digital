@@ -1,0 +1,145 @@
+<!-- Atendimento/CreateView -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar Atendimento</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0f172a;
+    color:white;
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+}
+
+.sidebar a{
+    text-decoration:none;
+    color:white;
+    background:#1f2937;
+    padding:14px;
+    border-radius:10px;
+}
+
+.sidebar a:hover{
+    background:#2563eb;
+}
+
+.content{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.card{
+    width:100%;
+    max-width:500px;
+    background:#111827;
+    padding:40px;
+    border-radius:16px;
+}
+
+h1{
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    margin-top:8px;
+    margin-bottom:20px;
+    background:#1f2937;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Atendimentos</h2>
+
+    <a href="/atendimento/list">Lista</a>
+    <a href="/atendimento/create">Novo Atendimento</a>
+</div>
+
+<div class="content">
+
+<form class="card" id="formCadastro">
+
+    <h1>Cadastrar Atendimento</h1>
+
+    <label>Nome Cliente</label>
+    <input type="text" id="nomeCliente">
+
+    <label>Telefone</label>
+    <input type="text" id="telefone">
+
+    <label>Horário</label>
+    <input type="time" id="horarioAtendimento">
+
+    <label>Data Atendimento</label>
+    <input type="date" id="dataAtendimento">
+
+    <label>Data Nascimento</label>
+    <input type="date" id="dataNascimento">
+
+    <label>Tipo Serviço</label>
+    <input type="text" id="tipoServico">
+
+    <label>Profissional</label>
+    <input type="text" id="profissional">
+
+    <button id="btnCadastrarAtendimento">
+        Cadastrar
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,11 +1,11 @@
-<!-- Usuario/ListView -->
+<!-- Atendimento/ListView -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Usuários</title>
+<title>Lista de Atendimentos</title>
 
 <style>
 
@@ -17,7 +17,7 @@
 
 body{
     font-family:'Segoe UI', sans-serif;
-    background:#020617;
+    background:#0f172a;
     color:white;
     display:flex;
     min-height:100vh;
@@ -25,23 +25,27 @@ body{
 
 .sidebar{
     width:260px;
-    background:#0f172a;
+    background:#111827;
     padding:30px 20px;
     display:flex;
     flex-direction:column;
     gap:15px;
 }
 
+.sidebar h2{
+    margin-bottom:20px;
+}
+
 .sidebar a{
     text-decoration:none;
     color:white;
-    background:#1e293b;
+    background:#1f2937;
     padding:14px;
     border-radius:10px;
 }
 
 .sidebar a:hover{
-    background:#7c3aed;
+    background:#2563eb;
 }
 
 .content{
@@ -50,7 +54,7 @@ body{
 }
 
 .card{
-    background:#0f172a;
+    background:#111827;
     padding:30px;
     border-radius:16px;
 }
@@ -71,7 +75,7 @@ thead{
 }
 
 tbody tr{
-    border-bottom:1px solid #334155;
+    border-bottom:1px solid #1f2937;
 }
 
 button{
@@ -84,7 +88,7 @@ button{
 }
 
 a{
-    color:#c084fc;
+    color:#60a5fa;
     text-decoration:none;
     margin-right:10px;
 }
@@ -96,49 +100,51 @@ a{
 <body>
 
 <div class="sidebar">
-    <h2>Usuários</h2>
+    <h2>Atendimentos</h2>
 
-    <a href="/user/list">Lista</a>
-    <a href="/user/create">Novo Usuário</a>
+    <a href="/atendimento/list">Lista</a>
+    <a href="/atendimento/create">Novo Atendimento</a>
 </div>
 
 <div class="content">
 
 <div class="card">
 
-<h1>Lista de Usuários</h1>
+<h1>Lista de Atendimentos</h1>
 
 <table>
 
 <thead>
 <tr>
     <th>ID</th>
-    <th>Nome</th>
-    <th>Email</th>
+    <th>Cliente</th>
+    <th>Telefone</th>
+    <th>Serviço</th>
+    <th>Profissional</th>
     <th>Ações</th>
 </tr>
 </thead>
 
 <tbody>
 
-<% for(usuario of usuarios) { %>
+<% for(atendimento of atendimentos) { %>
 
 <tr>
 
-<td><%= usuario.id %></td>
-<td><%= usuario.nome %></td>
-<td><%= usuario.email %></td>
+<td><%= atendimento.id %></td>
+<td><%= atendimento.nomeCLiente %></td>
+<td><%= atendimento.telefone %></td>
+<td><%= atendimento.tipoServico %></td>
+<td><%= atendimento.profissional %></td>
 
 <td>
+    <a href="/atendimento/edit/<%= atendimento.id %>">
+        Editar
+    </a>
 
-<a href="/user/edit/<%= usuario.id %>">
-Editar
-</a>
-
-<button onclick="apagarUsuario('<%= usuario.id %>')">
-Apagar
-</button>
-
+    <button onclick="apagarAtendimento('<%= atendimento.id %>')">
+        Apagar
+    </button>
 </td>
 
 </tr>
