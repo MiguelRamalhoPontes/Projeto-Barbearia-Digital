@@ -25,7 +25,7 @@ Atendimento.init({
         allowNull:false,
     },
     tipoServico: {
-        type: DataTypes.ENUM('Corte de cabelo', 'Barba', 'Sobrancelha', 'Outros'),
+        type: DataTypes.ENUM('Cabelo', 'Barba', 'Sobrancelha', 'Outros'),
         allowNull: false,
     },
     profissional: {
