@@ -308,7 +308,14 @@
             <div class="lg-row">
                 <div class="lg-col-6 lg-form-group">
                     <label class="lg-label" for="tipoServico">Tipo de Serviço</label>
-                    <input class="lg-input" type="text" id="tipoServico" placeholder="Ex: Consultoria Técnica" required>
+                
+                    <select class="lg-input" name="tipoServico" id="tipoServico" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="Cabelo">Cabelo</option>
+                        <option value="Barba">Barba</option>
+                        <option value="Sobrancelha">Sobrancelha</option>
+                        <option value="Outros">Outros</option>
+                    </select>
                 </div>
                 <div class="lg-col-6 lg-form-group">
                     <label class="lg-label" for="profissional">Profissional Responsável</label>
