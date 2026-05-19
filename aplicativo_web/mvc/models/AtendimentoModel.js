@@ -1,75 +1,104 @@
 class Atendimento
 {
-    nomeCLiente
-    telefone
-    horarioAtendimento
-    dataAtendimento
-    dataNascimento
-    tipoServico
-    profissional
-    constructor(nomeCLiente, telefone, horarioAtendimento, dataAtendimento, dataNascimento, tipoServico, profissional)
+    #id
+    #nomeCliente
+    #telefone
+    #horarioAtendimento
+    #dataAtendimento
+    #dataNascimento
+    #tipoServico
+    #profissional
+      
+
+    constructor(nomeCliente, telefone, horarioAtendimento, dataAtendimento, dataNascimento, tipoServico, profissional)
     {
-        this.nomeCLiente = nomeCLiente
-        this.telefone = telefone
-        this.horarioAtendimento = horarioAtendimento
-        this.dataAtendimento = dataAtendimento
-        this.dataNascimento = dataNascimento
-        this.tipoServico = tipoServico
-        this.profissional = profissional
+        this.#nomeCliente = nomeCliente
+        this.#telefone = telefone
+        this.#horarioAtendimento = horarioAtendimento
+        this.#dataAtendimento = dataAtendimento
+        this.#dataNascimento = dataNascimento
+        this.#tipoServico = tipoServico
+        this.#profissional = profissional
     }
 
-    getNomeCliente()
+    get id()
     {
-        return this.nomeCLiente
+        return this.#id; 
     }
-    setNomeCliente(nomeCLiente)
+
+    get nomeCliente()
     {
-        this.nomeCLiente = nomeCLiente
+        return this.#nomeCliente; 
     }
-    getTelefone()
+
+    get telefone()
     {
-        return this.telefone
+        return this.#telefone; 
     }
-    setTelefone(telefone)
+
+    get horarioAtendimento()
     {
-        this.telefone = telefone
+        return this.#horarioAtendimento; 
+    }
+
+    get dataAtendimento()
+    {
+        return this.#dataAtendimento; 
+    }
+
+    get dataNascimento()
+    {
+        return this.#dataNascimento; 
+    }
+
+    get tipoServico()
+    {
+        return this.#tipoServico; 
+    }
+
+    get profissional()
+    {
+        return this.#profissional; 
+    }
+
+    set id(valor)
+    {
+        this.#id = valor
     }
     
-    getHorarioAtendimento()
+    set nomeCliente(valor)
     {
-        return this.horarioAtendimento
+        this.#nomeCliente = valor
     }
-    setHorarioAtendimento(horarioAtendimento)
+
+    set telefone(valor)
     {
-        this.horarioAtendimento = horarioAtendimento
+        this.#telefone = valor
     }
-    getDataAtendimento()
+
+    set horarioAtendimento(valor)
     {
-        return this.dataAtendimento
+        this.#horarioAtendimento = valor
     }
-    setDataAtendimento(dataAtendimento)
+
+    set dataAtendimento(valor)
     {
-        this.dataAtendimento = dataAtendimento
+        this.#dataAtendimento = valor
     }
-    getDataNascimento()
+
+    set dataNascimento(valor)
     {
-        return this.dataNascimento
+        this.#dataNascimento = valor
     }
-    getTipoServico()
+
+    set tipoServico(valor)
     {
-        return this.tipoServico
+        this.#tipoServico = valor
     }
-    setTipoServico(tipoServico)
+
+    set profissional(valor)
     {
-        this.tipoServico = tipoServico
-    }
-    getProfissional()
-    {
-        return this.profissional
-    }
-    setProfissional(profissional)
-    {
-        this.profissional = profissional
+        this.#profissional = valor
     }
 }
 module.exports = Atendimento

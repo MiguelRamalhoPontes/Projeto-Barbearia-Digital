@@ -1,5 +1,6 @@
 const Atendimento = require("../mvc/models/AtendimentoModel");
 const AtendimentoSchema = require("../schemas/AtendimentoSchema");
+const UsuarioSchema = require("../schemas/UsuarioSchema")
 
 class AtendimentoService 
 {
@@ -14,25 +15,25 @@ class AtendimentoService
     async buscarAtendimento(id) 
     {   
        const dado = await this.#atendimentoSchema.findOne({
-            where: { id: id }
+            where: { id: id },
+            include: "users"
         });
 
         if(!dado){
-            return null;
+            return null
         }
 
        const atendimento = new Atendimento(
-            dado.nomeCliente,
-            dado.telefone,
-            dado.horarioAtendimento,
-            dado.dataAtendimento,
-            dado.dataNascimento,
-            dado.tipoServico,
-            dado.profissional
-       );
+        dado.nomeCliente,
+        dado.telefone,
+        dado.horarioAtendimento,
+        dado.dataAtendimento,
+        dado.dataNascimento,
+        dado.tipoServico,
+        dado.users.id
+       )
 
-       atendimento.id = dado.id;
-       atendimento.dataAtendimento = dado.dataAtendimento;
+       atendimento.id = dado.id
 
        return atendimento;
 
@@ -44,77 +45,79 @@ class AtendimentoService
             where: { id: id }
         });
 
-        const affectedRows = await atendimento.destroy();
+        const affectedRows = await atendimento.destroy()
 
         return affectedRows;
     }
 
     async buscarTodosAtendimentos() 
     {   
-        const atendimentos = [];
-        const dados = await this.#atendimentoSchema.findAll();
+        const atendimentos = []
+        const dados = await this.#atendimentoSchema.findAll({
+            include:"users"
+        });
+   
 
         for(const atendimento of dados)
-        {
-
+        {            
             const a = new Atendimento(
-                atendimento.nomeCliente,
-                atendimento.telefone,
-                atendimento.horarioAtendimento,
-                atendimento.dataAtendimento,
-                atendimento.dataNascimento,
-                atendimento.tipoServico,
-                atendimento.profissional
-            );
+                    atendimento.nomeCliente,
+                    atendimento.telefone,
+                    atendimento.horarioAtendimento,
+                    atendimento.dataAtendimento,
+                    atendimento.dataNascimento,
+                    atendimento.tipoServico,
+                    atendimento.users.username
+                )
             
-            a.id = atendimento.id;
-            a.dataAtendimento = atendimento.dataAtendimento;
+            a.id = atendimento.id
 
-            atendimentos.push(a);
+            atendimentos.push(a)
         }
 
-        return atendimentos;
+        return atendimentos
 
     }
 
     async cadastrarAtendimento(
-        nomeCliente,
-        telefone,
-        horarioAtendimento,
-        dataAtendimento,
-        dataNascimento,
-        tipoServico,
-        profissional
+       nomeCliente,
+       telefone,
+       horarioAtendimento,
+       dataAtendimento,
+       dataNascimento,
+       tipoServico,
+       profissional
     )
     {
         const atendimento = new Atendimento(
-            nomeCliente,
-            telefone,
-            horarioAtendimento,
-            dataAtendimento,
-            dataNascimento,
-            tipoServico,
-            profissional
-        );
+           nomeCliente,
+           telefone,
+           horarioAtendimento,
+           dataAtendimento,
+           dataNascimento,
+           tipoServico,
+           profissional
+        )
         
-        const id = await this.#atendimentoSchema.create(
+        const a = await this.#atendimentoSchema.create(
             {
-                nomeCliente: atendimento.nomeCLiente,
+                nomeCliente: atendimento.nomeCliente,
                 telefone: atendimento.telefone,
                 horarioAtendimento: atendimento.horarioAtendimento,
                 dataAtendimento: atendimento.dataAtendimento,
                 dataNascimento: atendimento.dataNascimento,
                 tipoServico: atendimento.tipoServico,
-                profissional: atendimento.profissional
+                profissional: atendimento.profissional,
+                usuarioId: atendimento.profissional
             }
-        );
+        )
 
-        return id;
+        return a;
 
     }
 
     async atualizarAtendimento(
-        id,
+        id, 
         nomeCliente,
         telefone,
         horarioAtendimento,
@@ -127,44 +130,46 @@ class AtendimentoService
        
         let rows = 0;
 
-        const atendimento = await this.buscarAtendimento(id);
+        const atendimento = await this.buscarAtendimento(id)
 
         if(atendimento)
         {
            
             const model = new Atendimento(
-                nomeCliente || atendimento.nomeCLiente,
+                nomeCliente || atendimento.nomeCliente , 
                 telefone || atendimento.telefone,
                 horarioAtendimento || atendimento.horarioAtendimento,
                 dataAtendimento || atendimento.dataAtendimento,
                 dataNascimento || atendimento.dataNascimento,
                 tipoServico || atendimento.tipoServico,
-                profissional || atendimento.profissional
-            );
+                profissional ||  atendimento.profissional     
+            )
 
              const affectedRows = await this.#atendimentoSchema.update(
                 {
-                    nomeCliente: model.nomeCLiente,
+                    nomeCliente: model.nomeCliente,
                     telefone: model.telefone,
                     horarioAtendimento: model.horarioAtendimento,
                     dataAtendimento: model.dataAtendimento,
                     dataNascimento: model.dataNascimento,
                     tipoServico: model.tipoServico,
-                    profissional: model.profissional
+                    profissional: model.profissional,
+                    usuarioId: model.profissional
                 },
                 {
                     where: {
                         id: id
                     }
                 }
-            );
+            )
 
-            rows = affectedRows;
+            rows = affectedRows
         }       
 
         return rows;
     }
 
-}
 
+}
+// Corrigido de modules para module
 module.exports = AtendimentoService;
